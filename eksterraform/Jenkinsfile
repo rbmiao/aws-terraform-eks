@@ -39,10 +39,10 @@ pipeline {
 			dir('eksterraform') {
 				//withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS_Credentials', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 				sh """
-					sudo terraform init
-					sudo terraform workspace new ${params.cluster} || true
-					sudo terraform workspace select ${params.cluster}
-					sudo terraform plan \
+					terraform init
+					terraform workspace new ${params.cluster} || true
+					terraform workspace select ${params.cluster}
+					terraform plan \
 						-var cluster-name=${params.cluster} \
 						-out ${plan}
 					echo ${params.cluster}
